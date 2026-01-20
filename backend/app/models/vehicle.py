@@ -13,3 +13,6 @@ class Vehicle(db.Model):
     vehicle_type = db.Column(db.String(50))
 
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    # Foreign Key
+    client_id = db.Column(db.Integer, db.ForeignKey("clients.id"), nullable=False)

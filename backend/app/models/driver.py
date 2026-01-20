@@ -13,3 +13,6 @@ class Driver(db.Model):
     license_number = db.Column(db.String(80))
 
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    # Foreign Key
+    client_id = db.Column(db.Integer, db.ForeignKey("clients.id"), nullable=False)

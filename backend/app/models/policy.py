@@ -18,3 +18,9 @@ class Policy(db.Model):
     status = db.Column(db.String(50), default="active")
 
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    # Foreign Key
+    client_id = db.Column(db.Integer, db.ForeignKey("clients.id"), nullable=False)
+
+    # Relationships
+    quotes = db.relationship("Quote", backref="policy", lazy=True)

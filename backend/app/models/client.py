@@ -17,3 +17,11 @@ class Client(db.Model):
     status = db.Column(db.String(50), default="prospect")
 
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    # Foreign Keys
+    agent_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+
+    # Relationships
+    drivers = db.relationship("Driver", backref="client", lazy=True)
+    vehicles = db.relationship("Vehicle", backref="client", lazy=True)
+    policies = db.relationship("Policy", backref="client", lazy=True)

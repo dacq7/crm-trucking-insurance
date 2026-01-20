@@ -11,7 +11,9 @@ class User(db.Model):
     password_hash = db.Column(db.String(255), nullable=False)
 
     role = db.Column(db.String(50), nullable=False)  # admin, agent
-
     is_active = db.Column(db.Boolean, default=True)
 
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    # Relationships
+    clients = db.relationship("Client", backref="agent", lazy=True)

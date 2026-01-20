@@ -11,3 +11,6 @@ class Quote(db.Model):
     mga = db.Column(db.String(120))
 
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    # Foreign Key
+    policy_id = db.Column(db.Integer, db.ForeignKey("policies.id"), nullable=False)
