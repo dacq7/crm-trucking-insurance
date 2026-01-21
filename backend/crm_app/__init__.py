@@ -1,16 +1,16 @@
 from flask import Flask
-from .config import Config
-from .extensions import db, migrate, jwt, cors
+from crm_app.extensions import db, migrate
+
 
 def build_app():
     app = Flask(__name__)
-    app.config.from_object(Config)
+
+    app.config.from_object("crm_app.config.Config")
 
     db.init_app(app)
     migrate.init_app(app, db)
-    jwt.init_app(app)
-    cors.init_app(app)
 
-    import crm_app.models.init
+    from crm_app.routes.users import users_bp
+    app.register_blueprint(users_bp)
 
     return app
