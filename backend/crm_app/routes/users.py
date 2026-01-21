@@ -33,3 +33,29 @@ def create_user():
     db.session.commit()
 
     return jsonify(user.to_dict()), 201
+
+
+@users_bp.route("/<int:user_id>/", methods=["PUT"])
+def update_user(user_id):
+    user = User.query.get(user_id)
+
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    data = request.get_json()
+
+    if not data:
+        return jsonify({"error": "No JSON body provided"}), 400
+
+    email = data.get("email")
+    name = data.get("name")
+
+    if email:
+        user.email = email
+
+    if name:
+        user.name = name
+
+    db.session.commit()
+
+    return jsonify(user.to_dict()), 200
