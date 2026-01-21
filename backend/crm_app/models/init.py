@@ -4,3 +4,4 @@ from .driver import Driver
 from .vehicle import Vehicle
 from .policy import Policy
 from .quote import Quote
+from .role import Role
